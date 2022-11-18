@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useFetch from './FetchData.js';
 import { Box } from '@mui/material';
-import AddAnimeButton from './AddAnimeButton.js';
 import AnimeCardComponent from './AnimeCardComponent.js';
 import { getAnimeUrl } from '../utils/Constants.js';
 import AddAnime from './AddAnime.js';

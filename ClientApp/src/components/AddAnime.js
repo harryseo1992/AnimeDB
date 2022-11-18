@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { 
   Button, 
   Dialog, 
@@ -9,7 +9,6 @@ import {
   DialogActions
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { useNavigate } from 'react-router-dom';
 import { usePost } from './FetchData';
 
 const AddAnime = () => {
@@ -19,7 +18,6 @@ const AddAnime = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [open, setOpen] = useState(false);
   const [addAnimeResponse, addAnimeResponseError, addAnimeResponseLoading] = usePost("/api/animes", animeToAdd);
-  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,12 +35,6 @@ const AddAnime = () => {
     })
     setOpen(false);
   }
-
-  useEffect(() => {
-    if (addAnimeResponse.id) {
-      navigate("/");
-    }
-  }, [addAnimeResponse])
 
   return (
     <div>
