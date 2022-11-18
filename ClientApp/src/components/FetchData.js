@@ -42,7 +42,7 @@ const useFetch = (url, filter, reset) => {
             setData([])
             if (!reset) setLoading(false);
         }
-    }, [url]);
+    }, [url, filter, reset]);
 
     return [data, error, loading];
 };
