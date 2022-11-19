@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
-import { 
-  Button, 
-  Dialog, 
+import React, { useState } from "react";
+import {
+  Button,
+  Dialog,
   DialogTitle,
-  DialogContent, 
-  DialogContentText, 
-  TextField, 
-  DialogActions
-} from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-import { usePost } from './FetchData';
+  DialogContent,
+  DialogContentText,
+  TextField,
+  DialogActions,
+} from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { usePost } from "./FetchData";
 
 const AddAnime = () => {
   const [animeToAdd, setAnimeToAdd] = useState(null);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [open, setOpen] = useState(false);
-  const [addAnimeResponse, addAnimeResponseError, addAnimeResponseLoading] = usePost("/api/animes", animeToAdd);
+  const [addAnimeResponse, addAnimeResponseError, addAnimeResponseLoading] =
+    usePost("/api/animes", animeToAdd);
+
+  if (addAnimeResponseError) console.log(addAnimeResponseError);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,12 +32,12 @@ const AddAnime = () => {
 
   const handleAdd = () => {
     setAnimeToAdd({
-      "title": title,
-      "description": description,
-      "imageUrl": imageUrl
-    })
+      title: title,
+      description: description,
+      imageUrl: imageUrl,
+    });
     setOpen(false);
-  }
+  };
 
   return (
     <div>
@@ -44,9 +47,7 @@ const AddAnime = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>AnimeDB</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Add your anime
-          </DialogContentText>
+          <DialogContentText>Add your anime</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -78,11 +79,13 @@ const AddAnime = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <LoadingButton onClick={handleAdd}>{addAnimeResponse.id ? "Added" : "Add"}</LoadingButton>
+          <LoadingButton onClick={handleAdd} loading={addAnimeResponseLoading}>
+            {addAnimeResponse.id ? "Added" : "Add"}
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </div>
   );
-}
+};
 
 export default AddAnime;
