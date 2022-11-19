@@ -3,6 +3,7 @@
 bin/
 obj/
 .vscode/
+dist/
 # User-specific files
 *.suo
 *.user
