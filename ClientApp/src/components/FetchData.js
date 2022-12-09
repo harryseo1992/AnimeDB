@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-let controller = new AbortController();
 
 const useFetch = (url, filter, reset) => {
   const [data, setData] = useState([]);
